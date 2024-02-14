@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="shortcut icon" type="image/png" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comme:wght@100&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yixboost Games</title>
+</head>
+<body>
+<header>
+    <div class="container">
+        <img src="img/logo.png" alt="Yixboost Games Logo" class="logo">
+<h1>Yixboost Games</h1>
+<div class="beta-banner">
+  <span class="beta-text">BETA</span>
+</div>
+        <form action="#" method="get">
+            <input type="text" class="zoekterm" placeholder="Zoeken...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>     
+    </div>
+</header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="help.html">HelpCenter</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="right-align"><a href="https://sites.google.com/view/reboostgames/home?authuser=0">Reboost Live</a></li>
+        </ul>
+    </nav>
+    <section id="intro">
+        <h2>Welkom bij Yixboost Games</h2>
+        <p>Ontdek de spannendste games van dit moment en laat je onderdompelen in de gamingwereld.</p>
+        <a href="games.html" class="button">Bekijk onze spellen</a>
+    </section>
+    <section id="featured-games">
+        <h2>Uitgelichte spellen</h2>
+      <a href="games/jumpinghenk.html">
+        <div class="game">
+<img src="img/logo jumping henk 800-800.png" alt="Game 1">
+            <h3>Jumping Henk</h3>
+        </div>
+      </a>
+        </section>
+                <a href="https://instagram.com/yixboost" target="_blank">
+  <div class="ads-banner">
+    <img src="img/instagram.png" alt="Ads Banner">
+    <div class="ads-text">
+      <h3>Volg ons op Instagram</h3>
+      <p>Voor meer info over alle projecten van Yixboost NL.</p>
+    </div>
+  </div>
+</a>
+            <section id="box">
+        <h2>Random Game Generator</h2>
+        <p>Weet je niet wat je wilt spelen? klik hier om een willekeurige game te spelen!</p>
+        <a class="button2">Generate</a>
+    </section>
+    <footer>
+        <p>&copy; 2023 Yixboost Games. Alle rechten voorbehouden.</p>
+        <div class="social-icons">
+            <a href="https://discord.com/invite/khmy4nR9" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://www.instagram.com/yixboost/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@yixboost" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://github.com/Yixboost" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+            <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <img src="img/discord.png" alt="Discord Logo" class="image">
+        <h2 class="text">Join us on Discord!</h2>
+        <a href="https://discord.com/invite/khmy4nR9" class="button1">Join Now</a>
+    </div>
+      <!-- Popup Overlay -->
+  <div id="popup-overlay" class="popup-overlay"></div>
+
+  <!-- Popup Content -->
+  <div id="popup-content" class="popup-content">
+    <h2>Zoekresultaten</h2>
+    <div class="zoekresultaten"></div>
+  </div>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MJS8VDDV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <script src="https://kit.fontawesome.com/0539dffe6d.js" crossorigin="anonymous"></script>
+<script>
+    function closePopup() {
+      var popupOverlay = document.getElementById("popup-overlay");
+      var popupContent = document.getElementById("popup-content");
+      popupOverlay.style.display = "none";
+      popupContent.style.display = "none";
+    }
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var zoekterm = document.querySelector('.zoekterm').value;
+      zoekInSitemap(zoekterm);
+    });
+
+    function zoekInSitemap(zoekterm) {
+      fetch('sitemap.txt')
+        .then(response => response.text())
+        .then(data => {
+          var urls = data.split('\n');
+          var zoekresultaten = urls.filter(url => url.includes(zoekterm));
+          toonZoekresultaten(zoekresultaten);
+        })
+        .catch(error => {
+          console.error('Er is een fout opgetreden bij het inlezen van sitemap.txt:', error);
+        });
+    }
+
+    function toonZoekresultaten(resultaten) {
+      var zoekresultatenDiv = document.querySelector('.zoekresultaten');
+      zoekresultatenDiv.innerHTML = '';
+
+      if (resultaten.length === 0) {
+        zoekresultatenDiv.innerHTML = 'Geen zoekresultaten gevonden.';
+      } else {
+        resultaten.forEach(function(resultaat) {
+          var link = document.createElement('a');
+          link.href = resultaat;
+          link.textContent = resultaat;
+          zoekresultatenDiv.appendChild(link);
+          zoekresultatenDiv.appendChild(document.createElement('br'));
+        });
+      }
+
+      var popupOverlay = document.getElementById("popup-overlay");
+      var popupContent = document.getElementById("popup-content");
+      var popupClose = document.getElementById("popup-close");
+
+      popupOverlay.style.display = "block";
+      popupContent.style.display = "block";
+
+      popupClose.addEventListener("click", closePopup);
+    }
+  </script>
+  <script src="js/randomgame.js"></script>
+  <script src="js/closepopup.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

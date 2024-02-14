@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" href="img/logo.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error 404 - Yixboost Games</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      background-color: #34dbeb;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+
+    .animation {
+      font-size: 50px;
+      margin: 20px;
+      animation: rotate 2s linear infinite, move 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Error 404</h1>
+    <p>De gevraagde pagina kon niet worden gevonden.</p>
+    <div class="animation">
+      <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <p>Ga terug naar de <a href="/">homepage</a>.</p>
+  </div>
+  <script>
+  const body = document.querySelector('body');
+let currentColor = getRandomColor();
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function changeBackgroundColor() {
+  const nextColor = getRandomColor();
+  body.style.transition = 'background-color 1s';\
+  body.style.backgroundColor = nextColor;
+  currentColor = nextColor;
+}
+
+setInterval(changeBackgroundColor, 1000);
+</script>
+</body>
+</html>
